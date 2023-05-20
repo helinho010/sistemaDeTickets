@@ -11,17 +11,26 @@ class TicketController extends Controller
 {
     public function index()
     {
-        $indice=5;
+        $indice=6;
+        $nuevoValor=11;
         
-        $updatePrioridad=Prioridad::find(1);
-        $updatePrioridad->delete();
+        $updatePrioridad=Prioridad::find($indice);
+        $updatePrioridad->id=$nuevoValor;
+        $updatePrioridad->save();
+
+        // $updateTickets=Prioridad::find(4)->tickets()->get();
+        // foreach ($updateTickets as $key => $value) 
+        // {
+        //    $value->id_prioridad=3;
+        // }
+        // $updateTickets->save();
 
         // $tickets=Prioridad::find($indice)
         //                     ->tickets()
         //                     ->select("codigo_ticket","fecha","estado","id_prioridad")
         //                     ->get();
 
-        return $updatePrioridad;
+        return Prioridad::find($nuevoValor)->tickets()->get();
     }
 
 }
